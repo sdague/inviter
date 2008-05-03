@@ -1,16 +1,7 @@
-<p>
-  <b>Name:</b>
-  <%=h @event.name %>
-</p>
-
+<h1><%=h @event.name %></h1>
 <p>
   <b>Description:</b>
   <%=h @event.description %>
-</p>
-
-<p>
-  <b>Seed:</b>
-  <%=h @event.seed %>
 </p>
 
 <p>
@@ -27,6 +18,11 @@
   <b>Location:</b>
   <%=h @event.location_id %>
 </p>
+
+<p>
+  <% form_for(@newinvitees) do |f| %>
+
+  <% end %>
 
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
