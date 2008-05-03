@@ -6,7 +6,7 @@ class CreateEvents < ActiveRecord::Migration
       t.string :seed
       t.date :date
       t.time :start
-      t.int :location_id
+      t.integer :location_id
 
       t.timestamps
     end

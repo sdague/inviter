@@ -5,7 +5,7 @@ class CreateLocations < ActiveRecord::Migration
       t.string :address
       t.string :city
       t.string :state
-      t.int :zip
+      t.integer :zip
       t.string :phone
 
       t.timestamps
