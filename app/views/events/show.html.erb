@@ -19,11 +19,19 @@
   <%=h @event.location_id %>
 </p>
 
+<h2>Current Invities</h2>
+<% @rsvps.each do |r| %>
+<%=h r.person.email %><br/>
+<% end %>
+
 <p>
-  <% form_for(@newinvitees) do |f| %>
-
+  <% form_tag 'newinvitees' do %>
+  <%= hidden_field_tag 'id', @event.id %>
+  <%= text_area_tag 'list', nil, :size => "60x15" %>
+  <br/>
+  <%= submit_tag "Add Invitees" %>
   <% end %>
-
+  
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
