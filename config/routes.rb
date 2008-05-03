@@ -1,6 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :locations
 
+  map.resources :locations
+
   map.resources :events
 
   map.resources :events
