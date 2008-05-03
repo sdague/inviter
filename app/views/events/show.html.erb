@@ -20,9 +20,26 @@
 </p>
 
 <h2>Current Invities</h2>
-<% @rsvps.each do |r| %>
-<%=h r.person.email %><br/>
+<h3>Will Attend - <%= yes_number %></h3>
+<% yes_list do |r| %>
+<%= format_invitee(r) %><br/>
 <% end %>
+
+<h3>May Attend - <%= maybe_number %></h3>
+<% maybe_list do |r| %>
+<%= format_invitee(r) %><br/>
+<% end %>
+
+<h3>Won't Attend - <%= no_number %></h3>
+<% no_list do |r| %>
+<%= format_invitee(r) %><br/>
+<% end %>
+
+<h3>Haven't Responded - <%= na_number %></h3>
+<% na_list do |r| %>
+<%= format_invitee(r) %><br/>
+<% end %>
+
 
 <p>
   <% form_tag 'newinvitees' do %>

@@ -1,0 +1,87 @@
+<style>
+<% if @error %>
+body { background-color: red }
+
+<% end %>
+td.attend_yes { 
+background-color: green; 
+font-size: large; 
+font-weight: bold }
+td.attend_maybe { 
+background-color: cyan;
+font-size: large; 
+font-weight: bold }
+td.attend_no { 
+background-color: red; 
+font-size: large; 
+font-weight: bold }
+td.attend_na { 
+background-color: grey; 
+font-size: large; 
+font-weight: bold }
+
+</style>
+
+<h1><%= @rsvp.event.name %></h1>
+<table id="info" cellpadding="10"><tr><td valign="top">
+<div id="eventdetails" style="width:
+                              400px;"><%= @rsvp.event.description.gsub(/(\r\n)+/, "<br/><br/>")
+                                          %>
+</div>
+</td><td>
+<div id="address">
+<b>Event Location</b><br/>
+<%= address(@rsvp.event.location) %>
+</div>
+<div id="map" style="width: 500px; height: 300px"></div>
+Click the Map to Get Directions
+</td></tr></table>
+
+<h1>Your Status</h1>
+<% form_tag '/invite/update' do %>
+<%= hidden_field_tag 'id', @rsvp.id %>
+<%= hidden_field_tag 'key', @key %>
+<table>
+<tr><th>Your Name</th><td>
+    <%= text_field_tag 'name', @rsvp.person.name %>
+</td></tr>
+<tr><th>Your Email</th><td>
+    <%= text_field_tag 'email', @rsvp.person.email %>
+</td></tr>
+<tr><th>Number Attending</th><td>
+    <%= text_field_tag 'num', @rsvp.num %>
+</td></tr>
+<tr><td colspan=2>Will attend? <%= text_field_tag 'state', @rsvp.state %></td></tr>
+<tr><td colspan=2><%= text_area_tag 'response', @rsvp.response, :size => "60x10" %></td></tr>
+<tr><td colspan=2><%= submit_tag "Update Your Status" %></td></tr>
+</table>
+<% end %>
+
+<h1>Who's coming?</h1>
+<h2>Current Invities</h2>
+<table>
+<tr><th>Name</th><th>Number</th><th>Message</th></tr>
+<tr><td class="attend_yes" colspan=3>Will Attend - <%= yes_number %></th></tr>
+<% yes_list.each do |r| %>
+<%= format_invitee(r) %>
+<% end %>
+
+<tr><td class="attend_maybe" colspan=3>May Attend - <%= maybe_number %></th></tr>
+
+<% maybe_list.each do |r| %>
+<%= format_invitee(r) %>
+<% end %>
+
+<tr><td class="attend_no" colspan=3>Won't Attend - <%= no_number %></th></tr>
+<% no_list.each do |r| %>
+<%= format_invitee(r) %>
+<% end %>
+
+<tr><td class="attend_na" colspan=3>Haven't Responded - <%= na_number %></th></tr>
+<% na_list.each do |r| %>
+<%= format_invitee(r) %>
+<% end %>
+</table>
+
+
+

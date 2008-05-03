@@ -3,12 +3,6 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :locations
 
-  map.resources :locations
-
-  map.resources :events
-
-  map.resources :events
-
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
