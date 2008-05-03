@@ -1,0 +1,42 @@
+<h1>Editing event</h1>
+
+<%= error_messages_for :event %>
+
+<% form_for(@event) do |f| %>
+  <p>
+    <b>Name</b><br />
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <b>Description</b><br />
+    <%= f.text_field :description %>
+  </p>
+
+  <p>
+    <b>Seed</b><br />
+    <%= f.text_field :seed %>
+  </p>
+
+  <p>
+    <b>Date</b><br />
+    <%= f.date_select :date %>
+  </p>
+
+  <p>
+    <b>Start</b><br />
+    <%= f.datetime_select :start %>
+  </p>
+
+  <p>
+    <b>Location</b><br />
+    <%= f.text_field :location_id %>
+  </p>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @event %> |
+<%= link_to 'Back', events_path %>
