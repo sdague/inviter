@@ -1,7 +1,7 @@
 module InviteHelper
 
     def address(location)
-        return "#{location.name}<br/>#{location.address}<br/>#{location.city}, #{location.state} #{location.zip}"
+        return "#{location.name}<br/>#{location.address}<br/>#{location.city}, #{location.state} #{location.zip}<br/>#{location.phone}"
         
     end
     
