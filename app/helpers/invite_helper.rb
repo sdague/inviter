@@ -51,7 +51,7 @@ module InviteHelper
     end 
 
     def format_invitee(r)
-        return "<tr valign='top'><td>#{r.person.name or r.person.email}</td><td>#{r.num or 1}</td><td>#{r.response}</td></tr>"
+        return "<tr valign='top'><td>#{h(r.person.name) or h(r.person.email)}</td><td>#{r.num or 1}</td><td>#{h(r.response)}</td></tr>"
     end
 
 end
