@@ -1,0 +1,56 @@
+body {
+    text-align: center;
+}
+
+
+td.attend_yes { 
+    background-color: #339933; 
+    font-size: large; 
+    font-weight: bold }
+td.attend_maybe { 
+    background-color: #259EDB;
+    font-size: large;
+    font-weight: bold }
+td.attend_no { 
+    background-color: #FF6666;
+    font-size: large; 
+    font-weight: bold }
+td.attend_na { 
+    background-color: #999999;
+    font-size: large; 
+    font-weight: bold }
+
+h1 {
+    background-color: #660000;
+    color: white;
+    line-height: 2em;
+    text-align: center;
+}
+
+.padding {
+    margin: 10px;
+}
+
+
+#eventdetails {
+    width: 400px;
+}
+
+#address {
+    width: 400px;
+}
+
+#map {
+    width: 500px;
+    height: 300px;
+
+}
+
+#content {
+    background-color: #eeeeee;
+    margin: 0 auto;
+    text-align: left;
+    width: 950px;
+}
+
+

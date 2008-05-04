@@ -1,43 +1,22 @@
-<style>
-<% if @error %>
-body { background-color: red }
-
-<% end %>
-td.attend_yes { 
-background-color: green; 
-font-size: large; 
-font-weight: bold }
-td.attend_maybe { 
-background-color: cyan;
-font-size: large; 
-font-weight: bold }
-td.attend_no { 
-background-color: red; 
-font-size: large; 
-font-weight: bold }
-td.attend_na { 
-background-color: grey; 
-font-size: large; 
-font-weight: bold }
-
-</style>
-
+<div id="top">
 <h1><%= @rsvp.event.name %></h1>
-<table id="info" cellpadding="10"><tr><td valign="top">
-<div id="eventdetails" style="width:
-                              400px;"><%= @rsvp.event.description.gsub(/(\r\n)+/, "<br/><br/>")
+<table><tr valign="top"><td>
+<div id="eventdetails" class="padding" ><%= @rsvp.event.description.gsub(/(\r\n)+/, "<br/><br/>")
                                           %>
 </div>
 </td><td>
-<div id="address">
+<div id="address" class="padding">
 <b>Event Location</b><br/>
 <%= address(@rsvp.event.location) %>
 </div>
-<div id="map" style="width: 500px; height: 300px"></div>
+<div id="map"></div>
 Click the Map to Get Directions
 </td></tr></table>
+</div>
 
+<div id="status">
 <h1>Your Status</h1>
+<div id="yours" class="padding">
 <% form_tag '/invite/update' do %>
 <%= hidden_field_tag 'id', @rsvp.id %>
 <%= hidden_field_tag 'key', @key %>
@@ -56,10 +35,12 @@ Click the Map to Get Directions
 <tr><td colspan=2><%= submit_tag "Update Your Status" %></td></tr>
 </table>
 <% end %>
+</div>
+</div>
 
+<div id="attending">
 <h1>Who's coming?</h1>
-<h2>Current Invities</h2>
-<table>
+<table cellpadding="2" width="100%">
 <tr><th>Name</th><th>Number</th><th>Message</th></tr>
 <tr><td class="attend_yes" colspan=3>Will Attend - <%= yes_number %></th></tr>
 <% yes_list.each do |r| %>
@@ -82,6 +63,6 @@ Click the Map to Get Directions
 <%= format_invitee(r) %>
 <% end %>
 </table>
-
+</div>
 
 

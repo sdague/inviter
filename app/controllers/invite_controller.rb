@@ -6,21 +6,22 @@ class InviteController < ApplicationController
         @key = params[:key]
         l = @rsvp.event.location
         @address = "#{l.address}, #{l.city}, #{l.state}"
-        flash[:notice] = "Your url for this invitation is <a href='http://invite.dague.org/invite/#{@rsvp.id}?key=#{@key}'>http://invite.dague.org/invite/#{@rsvp.id}?key=#{@key}</a>"
+
         event = @rsvp.event
         person = @rsvp.person
         
         if @key != Digest::MD5.hexdigest(event.seed + person.email)
-            @error = "I hate you"
+            redirect_to(:controller => "sorry")
+            return
         end
-        
     end
 
     def update
         @key = params[:key]
         @rsvp = Rsvp.find(params[:id])
         if @key != Digest::MD5.hexdigest(@rsvp.event.seed + @rsvp.person.email)
-            
+            redirect_to(:controller => "sorry")
+            return
         end
         @rsvp.person.name = params[:name]
         @rsvp.person.email = params[:email]
