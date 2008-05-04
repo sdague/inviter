@@ -51,7 +51,7 @@ module InviteHelper
     end 
 
     def format_invitee(r)
-        name = r.person.name or r.person.email.sub(/@.*/,'')
+        name = r.person.name or r.person.email
         return "<tr valign='top'><td>#{h(name)}</td><td>#{r.num or 1}</td><td>#{h(r.response)}</td></tr>"
     end
 
