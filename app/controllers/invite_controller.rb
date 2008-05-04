@@ -3,40 +3,38 @@ require 'digest/md5'
 class InviteController < ApplicationController
     def show
         @rsvp = Rsvp.find(params[:id])
-        @key = params[:key]
+        key = params[:key]
         l = @rsvp.event.location
         @address = "#{l.address}, #{l.city}, #{l.state}"
 
-        event = @rsvp.event
-        person = @rsvp.person
+        @person = @rsvp.person
         
-        if @key != Digest::MD5.hexdigest(event.seed + person.email)
+        if key != @rsvp.key
             redirect_to(:controller => "sorry")
             return
         end
     end
 
     def update
-        @key = params[:key]
-        @rsvp = Rsvp.find(params[:id])
-        if @key != Digest::MD5.hexdigest(@rsvp.event.seed + @rsvp.person.email)
+        rsvp = params[:rsvp]
+        person = params[:person]
+        
+        @rsvp = Rsvp.find(rsvp[:id])
+        if rsvp[:key] != Digest::MD5.hexdigest(@rsvp.event.seed + @rsvp.person.email)
             redirect_to(:controller => "sorry")
             return
         end
-        @rsvp.person.name = params[:name]
-        @rsvp.person.email = params[:email]
-        @rsvp.num = params[:num]
-        @rsvp.state = params[:state]
-        @rsvp.response = params[:response]
+        oldemail = @rsvp.person.email
         
-        # in case they change their email
-        @key = Digest::MD5.hexdigest(@rsvp.event.seed + @rsvp.person.email)
+        @rsvp.person.update_attributes(person)
+        @rsvp.update_attributes(rsvp)
+                
+        if oldemail != @rsvp.person.email
+            InviteMailer.deliver_changed(@rsvp)
+        end
         
-        @rsvp.person.save
-        @rsvp.save
-
         respond_to do |format|
-            format.html { redirect_to(:action => "show", :id => @rsvp.id, :key => @key) }
+            format.html { redirect_to(:action => "show", :id => @rsvp.id, :key => @rsvp.key) }
         end
     end
 end

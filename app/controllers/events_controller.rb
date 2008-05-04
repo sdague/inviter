@@ -111,6 +111,7 @@ class EventsController < ApplicationController
                 rsvp.event_id = event.id
                 rsvp.state = "na"
                 rsvp.save
+                InviteMailer.deliver_invite(rsvp)
             end
         end
 

@@ -17,21 +17,24 @@ Click the Map to Get Directions
 <div id="status">
 <h1>Your Status</h1>
 <div id="yours" class="padding">
-<% form_tag '/invite/update' do %>
-<%= hidden_field_tag 'id', @rsvp.id %>
-<%= hidden_field_tag 'key', @key %>
+<% form_tag url_for(:action => "update") do %>
+<%= hidden_field("rsvp", "id") %>
+<%= hidden_field("rsvp", "key") %>
 <table>
 <tr><th>Your Name</th><td>
-    <%= text_field_tag 'name', @rsvp.person.name %>
+    <%= text_field("person", "name") %>
 </td></tr>
 <tr><th>Your Email</th><td>
-    <%= text_field_tag 'email', @rsvp.person.email %>
+    <%= text_field("person", "email") %>
+</td></tr>
+<tr><th>Will attend?</th>
+<td><%= select( "rsvp", "state", Rsvp.states ) %>
+
 </td></tr>
 <tr><th>Number Attending</th><td>
-    <%= text_field_tag 'num', @rsvp.num %>
+    <%= text_field("rsvp", "num") %>
 </td></tr>
-<tr><td colspan=2>Will attend? <%= text_field_tag 'state', @rsvp.state %></td></tr>
-<tr><td colspan=2><%= text_area_tag 'response', @rsvp.response, :size => "60x10" %></td></tr>
+<tr><td colspan=2><%= text_area("rsvp", "response", :size => "60x10") %></td></tr>
 <tr><td colspan=2><%= submit_tag "Update Your Status" %></td></tr>
 </table>
 <% end %>
