@@ -4,7 +4,16 @@ class InviteMailer < ActionMailer::Base
         @subject    = "Invitation to #{rsvp.event.name} on #{rsvp.event.date}"
         @body[:rsvp] = rsvp
         @recipients = rsvp.person.email
-        @from       = 'rails@dague.org'
+        @from       = 'sean@dague.net'
+        @sent_on    = sent_at
+        @headers    = {}
+    end
+    
+    def changed(rsvp, sent_at = Time.now)
+        @subject    = "Updated profile infrmation for #{rsvp.event.name}"
+        @body[:rsvp] = rsvp
+        @recipients = rsvp.person.email
+        @from       = 'sean@dague.net'
         @sent_on    = sent_at
         @headers    = {}
     end

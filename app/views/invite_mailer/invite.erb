@@ -3,5 +3,11 @@ You're invited to <%= @rsvp.event.name %>
 <%= word_wrap @rsvp.event.description, 80 %>
 
 For more information, and to RSVP, please see 
-<%= @rsvp.url %>
+http://invite.dague.org<%= url_for :controller => "invite", :action => "show", :id => @rsvp.id,
+:key => @rsvp.key %>
 
+Please check back as often as you like to see who else is coming to
+the event, and what other people are bringing.  Can't wait to see you
+there.
+
+    -Sean

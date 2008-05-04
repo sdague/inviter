@@ -34,7 +34,7 @@ class InviteController < ApplicationController
         
         @rsvp.person.save
         @rsvp.save
-        
+
         respond_to do |format|
             format.html { redirect_to(:action => "show", :id => @rsvp.id, :key => @key) }
         end
