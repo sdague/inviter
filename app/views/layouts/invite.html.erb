@@ -11,8 +11,18 @@
     </script>
 
     <script type="text/javascript">
-     var map = null;
-    var geocoder = null;
+      var map = null;
+      var geocoder = null;
+      function createMarker(point) {
+          var marker = new GMarker(point)
+
+          GEvent.addListener(marker, "click", function() {
+            marker.openInfoWindowHtml("<b><%= @rsvp.event.location.name %></b>");
+          });
+          return marker;
+        }
+
+    
 
     function showAddress(address) {
       if (geocoder) {
@@ -24,24 +34,30 @@
             } else {
               map.setCenter(point, 13);
               var marker = new GMarker(point);
+              directions = "<br/><a target='_new' href='http://maps.google.com/maps?f=q&hl=en&geocode=&q=<%= @address.gsub(/ /,'+') %>'>Directions</a>"
+              GEvent.addListener(marker, "click", function() {
+                 marker.openInfoWindowHtml("<b><%= @rsvp.event.location.name %></b><br/>" + address + directions);
+               });
               map.addOverlay(marker);
-              marker.openInfoWindowHtml(address);
             }
           }
         );
       }
     }
 
+    
 
     function load() {
       if (GBrowserIsCompatible()) {
         map = new GMap2(document.getElementById("map"));
+        map.addControl(new GSmallMapControl());
+
         map.setCenter(new GLatLng(37.4419, -122.1419), 13);
         geocoder = new GClientGeocoder();
-        GEvent.addListener(map, "click", function() {
-            window.open("http://maps.google.com/maps?f=q&hl=en&geocode=&q=<%= @address
-      %>", "_new");
-         });
+//        GEvent.addListener(map, "click", function() {
+//            window.open("http://maps.google.com/maps?f=q&hl=en&geocode=&q=<%= @address
+//      %>", "_new");
+//         });
 
         showAddress("<%= @address %>");
       }
