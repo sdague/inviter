@@ -1,6 +1,18 @@
 require 'digest/md5'
 
 class InviteController < ApplicationController
+    around_filter :catch_exceptions
+
+    private
+    def catch_exceptions
+        yield
+    rescue => exception
+        logger.debug "Caught exception! #{exception}"
+        redirect_to(:controller => "sorry")
+    end
+    
+    public 
+    
     def show
         @rsvp = Rsvp.find(params[:id])
         key = params[:key]
