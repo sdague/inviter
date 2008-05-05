@@ -1,6 +1,9 @@
 require 'pp'
 
 class EventsController < ApplicationController
+    before_filter :login_required
+    before_filter :admin_check
+    
     # GET /events
     # GET /events.xml
     def index
@@ -120,4 +123,13 @@ class EventsController < ApplicationController
         end
 
     end
+
+    def admin_check
+        unless current_user.login == "sdague"
+            flash[:notice] = "Unauthorized access to admin area"
+            redirect_to :controller => 'sorry'
+        end
+    end    
+
+    
 end

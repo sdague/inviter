@@ -1,4 +1,6 @@
 class LocationsController < ApplicationController
+    before_filter :login_required
+    before_filter :admin_check
   # GET /locations
   # GET /locations.xml
   def index
@@ -82,4 +84,13 @@ class LocationsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def admin_check
+        unless current_user.login == "sdague"
+            flash[:notice] = "Unauthorized access to admin area"
+            redirect_to :controller => 'sorry'
+        end
+    end    
+
+
 end

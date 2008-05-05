@@ -2,6 +2,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :events
 
   map.resources :locations
+    
+    map.resources :accounts
 
   # The priority is based upon order of creation: first created -> highest priority.
 
