@@ -4,45 +4,47 @@
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <title>Ruby on Rails: Welcome aboard</title>
+    <link href="/stylesheets/scaffold.css?1209923069" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/inviter.css?1209923069" media="screen" rel="stylesheet" type="text/css" />
     <style type="text/css" media="screen">
       body {
-        margin: 0;
-        margin-bottom: 25px;
-        padding: 0;
-        background-color: #f0f0f0;
-        font-family: "Lucida Grande", "Bitstream Vera Sans", "Verdana";
-        font-size: 13px;
-        color: #333;
+          margin: 0;
+          margin-bottom: 25px;
+          padding: 0;
+          background-color: #f0f0f0;
+          font-family: "Lucida Grande", "Bitstream Vera Sans", "Verdana";
+          font-size: 13px;
+          color: #333;
       }
       
       h1 {
-        font-size: 28px;
-        color: #000;
+          font-size: 28px;
+          color: #000;
       }
       
       a  {color: #03c}
       a:hover {
-        background-color: #03c;
-        color: white;
-        text-decoration: none;
+          background-color: #03c;
+          color: white;
+          text-decoration: none;
       }
       
       
       #page {
-        background-color: #f0f0f0;
-        width: 750px;
-        margin: 0;
-        margin-left: auto;
-        margin-right: auto;
+          background-color: #f0f0f0;
+          width: 750px;
+          margin: 0;
+          margin-left: auto;
+          margin-right: auto;
       }
       
       #content {
-        float: left;
-        background-color: white;
-        border: 3px solid #aaa;
-        border-top: none;
-        padding: 25px;
-        width: 500px;
+          float: left;
+          background-color: white;
+          border: 3px solid #aaa;
+          border-top: none;
+          padding: 25px;
+          width: 500px;
       }
       
       #sidebar {
@@ -180,98 +182,16 @@
     </style>
     <script type="text/javascript" src="javascripts/prototype.js"></script>
     <script type="text/javascript" src="javascripts/effects.js"></script>
-    <script type="text/javascript">
-      function about() {
-        if (Element.empty('about-content')) {
-          new Ajax.Updater('about-content', 'rails/info/properties', {
-            method:     'get',
-            onFailure:  function() {Element.classNames('about-content').add('failure')},
-            onComplete: function() {new Effect.BlindDown('about-content', {duration: 0.25})}
-          });
-        } else {
-          new Effect[Element.visible('about-content') ? 
-            'BlindUp' : 'BlindDown']('about-content', {duration: 0.25});
-        }
-      }
-      
-      window.onload = function() {
-        $('search-text').value = '';
-        $('search').onsubmit = function() {
-          $('search-text').value = 'site:rubyonrails.org ' + $F('search-text');
-        }
-      }
-    </script>
   </head>
   <body>
-    <div id="page">
-      <div id="sidebar">
-        <ul id="sidebar-items">
-          <li>
-            <form id="search" action="http://www.google.com/search" method="get">
-              <input type="hidden" name="hl" value="en" />
-              <input type="text" id="search-text" name="q" value="site:rubyonrails.org " />
-              <input type="submit" value="Search" /> the Rails site
-            </form>
-          </li>
-        
-          <li>
-            <h3>Join the community</h3>
-            <ul class="links">
-              <li><a href="http://www.rubyonrails.org/">Ruby on Rails</a></li>
-              <li><a href="http://weblog.rubyonrails.org/">Official weblog</a></li>
-              <li><a href="http://lists.rubyonrails.org/">Mailing lists</a></li>
-              <li><a href="http://wiki.rubyonrails.org/rails/pages/IRC">IRC channel</a></li>
-              <li><a href="http://wiki.rubyonrails.org/">Wiki</a></li>
-              <li><a href="http://dev.rubyonrails.org/">Bug tracker</a></li>
-            </ul>
-          </li>
-          
-          <li>
-            <h3>Browse the documentation</h3>
-            <ul class="links">
-              <li><a href="http://api.rubyonrails.org/">Rails API</a></li>
-              <li><a href="http://stdlib.rubyonrails.org/">Ruby standard library</a></li>
-              <li><a href="http://corelib.rubyonrails.org/">Ruby core</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
+    <div id="content">
+      <h1>Looking for the Invite?</h1>
+      <div id="top">
 
-      <div id="content">
-        <div id="header">
-          <h1>Welcome aboard</h1>
-          <h2>You&rsquo;re riding Ruby on Rails!</h2>
-        </div>
-
-        <div id="about">
-          <h3><a href="rails/info/properties" onclick="about(); return false">About your application&rsquo;s environment</a></h3>
-          <div id="about-content" style="display: none"></div>
-        </div>
-        
-        <div id="getting-started">
-          <h1>Getting started</h1>
-          <h2>Here&rsquo;s how to get rolling:</h2>
-          
-          <ol>
-            <li>
-              <h2>Create your databases and edit <tt>config/database.yml</tt></h2>
-              <p>Rails needs to know your login and password.</p>
-            </li>
-          
-            <li>
-              <h2>Use <tt>script/generate</tt> to create your models and controllers</h2>
-              <p>To see all available options, run it without parameters.</p>
-            </li>
-            
-            <li>
-              <h2>Set up a default route and remove or rename this file</h2>
-              <p>Routes are set up in config/routes.rb.</p>
-            </li>
-          </ol>
-        </div>
+        You've ended up here because you lost your link.  Not such a bad thing, 
+        but something the application can't help you with at this point.  
+        Please email <b>sean at dague dot net</b> to get your RSVP email regenerated.
       </div>
-      
-      <div id="footer">&nbsp;</div>
     </div>
   </body>
 </html>
