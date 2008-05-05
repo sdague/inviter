@@ -38,7 +38,7 @@ module InviteHelper
     end
     
     def number_by_state(state)
-        rsvps = Rsvp.find(:all, :conditions => ["state = ?", state], :order => "email")
+        rsvps = Rsvp.find(:all, :conditions => ["state = ?", state]).sort_by {|s| s.person.email}
         count = 0
         rsvps.each do |r|
             count += (r.num or 1)
@@ -47,7 +47,7 @@ module InviteHelper
     end
     
     def list_by_state(state)
-        Rsvp.find(:all, :conditions => ["state = ?", state], :order => "email")
+        Rsvp.find(:all, :conditions => ["state = ?", state]).sort_by {|s| s.person.email}
     end 
 
     def format_invitee(r)
