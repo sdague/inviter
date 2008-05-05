@@ -25,6 +25,8 @@ class InviteController < ApplicationController
             redirect_to(:controller => "sorry")
             return
         end
+        @rsvp.visited_at = DateTime.now
+        @rsvp.save
     end
 
     def update
