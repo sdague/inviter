@@ -34,7 +34,7 @@
             } else {
               map.setCenter(point, 13);
               var marker = new GMarker(point);
-              directions = "<br/><a target='_new' href='http://maps.google.com/maps?f=q&hl=en&geocode=&q=<%= @address.gsub(/ /,'+') %>'>Directions</a>"
+              directions = "<br/><a target='_new' href='http://maps.google.com/maps?f=d&hl=en&daddr=<%= @address.gsub(/ /,'+') %>'>Directions</a>"
               GEvent.addListener(marker, "click", function() {
                  marker.openInfoWindowHtml("<b><%= @rsvp.event.location.name %></b><br/>" + address + directions);
                });
