@@ -6,12 +6,13 @@
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>Events: <%= controller.action_name %></title>
   <%= stylesheet_link_tag 'scaffold' %>
+  <%= stylesheet_link_tag 'inviter' %>
 </head>
 <body>
-
+<div id="content">
 <p style="color: green"><%= flash[:notice] %></p>
 
 <%= yield  %>
-
+</div>
 </body>
 </html>

@@ -50,6 +50,15 @@ module InviteHelper
         Rsvp.find(:all, :conditions => ["state = ?", state]).sort_by {|s| s.person.email}
     end 
 
+    def format_invitee_admin(r)
+        date = ""
+        if r.visited_at
+            date = r.visited_at.strftime("%a, %b %d - %H:%M")
+        end
+        return "<tr valign='top'><td>#{h(r.person.name)} #{h(r.person.email)}</td><td><i>#{date}</i></td><td>#{r.num or 1}</td><td>#{h(r.response)}</td></tr>"
+    end
+
+    
     def format_invitee(r)
         name = r.person.name
         if (not name) or (name.length < 1)
