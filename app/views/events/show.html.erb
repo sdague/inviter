@@ -28,23 +28,23 @@
 
 <table width="100%">
 <tr><th width="200">Name</th><th width="200">Last Visited</th><th width="50">Number</th><th>Message</th></tr>
-<tr><td class="attend_yes" colspan=4>Will Attend - <%= yes_number %></th></tr>
+<tr><td class="attend_yes" colspan=5>Will Attend - <%= yes_number %></th></tr>
 <% yes_list.each do |r| %>
 <%= format_invitee_admin(r) %>
 <% end %>
 
-<tr><td class="attend_maybe" colspan=4>May Attend - <%= maybe_number %></th></tr>
+<tr><td class="attend_maybe" colspan=5>May Attend - <%= maybe_number %></th></tr>
 
 <% maybe_list.each do |r| %>
 <%= format_invitee_admin(r) %>
 <% end %>
 
-<tr><td class="attend_no" colspan=4>Won't Attend - <%= no_number %></th></tr>
+<tr><td class="attend_no" colspan=5>Won't Attend - <%= no_number %></th></tr>
 <% no_list.each do |r| %>
 <%= format_invitee_admin(r) %>
 <% end %>
 
-<tr><td class="attend_na" colspan=4>Haven't Responded - <%= na_number %></th></tr>
+<tr><td class="attend_na" colspan=5>Haven't Responded - <%= na_number %></th></tr>
 <% na_list.each do |r| %>
 <%= format_invitee_admin(r) %>
 <% end %>
