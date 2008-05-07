@@ -1,5 +1,5 @@
 <div id="top">
-<h1><%= @rsvp.event.name %></h1>
+<h1><%=h @rsvp.event.name %></h1>
 <table><tr valign="top"><td>
 <div id="eventdetails" class="padding" ><%= @rsvp.event.description.gsub(/(\r\n)+/, "<br/><br/>")
                                           %>
@@ -43,7 +43,7 @@ Click the Map to Get Directions
 
 <div id="attending">
 <h1>Who's coming?</h1>
-<table cellpadding="2" width="100%">
+<table width="100%">
 <tr><th width="300">Name</th><th width="100">Number</th><th>Message</th></tr>
 <tr><td class="attend_yes" colspan=3>Will Attend - <%= yes_number %></th></tr>
 <% yes_list.each do |r| %>

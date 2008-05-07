@@ -1,26 +1,32 @@
+<div id="top">
 <h1><%=h @event.name %></h1>
-<p>
-  <b>Description:</b>
-  <%=h @event.description %>
-</p>
+<div class="padding">
+<table><tr valign="top"><td>
+<tr valign="top">
+  <th>Description:</th>
+  <td><%= @event.description.gsub(/(\r\n)+/, "<br/><br/>") %></td>
+</tr>
+<tr valign="top" >
+  <th>Date:</th>
+  <td><%=h @event.date %></td>
+</tr>
+<tr valign="top">
+  <th>Start:</th>
+  <td><%=h @event.start %></td>
+</tr>
+<tr valign="top">
+  <th>Location:</th>
+  <td><%= address(@event.location) %></td>
+</tr>
+</table>
+</div>
+</div>
 
-<p>
-  <b>Date:</b>
-  <%=h @event.date %>
-</p>
-
-<p>
-  <b>Start:</b>
-  <%=h @event.start %>
-</p>
-
-<p>
-  <b>Location:</b>
-  <%=h @event.location_id %>
-</p>
+<div id="status">
 
 <h2>Current Invities</h2>
-<table cellpadding="2" width="100%">
+
+<table width="100%">
 <tr><th width="200">Name</th><th width="200">Last Visited</th><th width="50">Number</th><th>Message</th></tr>
 <tr><td class="attend_yes" colspan=4>Will Attend - <%= yes_number %></th></tr>
 <% yes_list.each do |r| %>
@@ -44,7 +50,7 @@
 <% end %>
 </table>
 
-<p>
+<div class="padding">
   <% form_tag 'newinvitees' do %>
   <%= hidden_field_tag 'id', @event.id %>
   <%= text_area_tag 'list', nil, :size => "60x15" %>
@@ -55,3 +61,5 @@
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
+</div>
+</div>

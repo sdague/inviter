@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :rsvps
+
   map.resources :events
 
   map.resources :locations

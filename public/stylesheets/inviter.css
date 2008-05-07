@@ -2,20 +2,25 @@ body {
     text-align: center;
 }
 
+td {padding-left: 5px}
 
 td.attend_yes { 
+    line-height: 1.5em;
     background-color: #339933; 
     font-size: large; 
     font-weight: bold }
 td.attend_maybe { 
+    line-height: 1.5em;
     background-color: #259EDB;
     font-size: large;
     font-weight: bold }
 td.attend_no { 
+    line-height: 1.5em;
     background-color: #FF6666;
     font-size: large; 
     font-weight: bold }
 td.attend_na { 
+    line-height: 1.5em;
     background-color: #999999;
     font-size: large; 
     font-weight: bold }
