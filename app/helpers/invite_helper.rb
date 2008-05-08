@@ -47,7 +47,11 @@ module InviteHelper
     end
     
     def list_by_state(state)
-        Rsvp.find(:all, :conditions => ["state = ?", state]).sort_by {|s| s.updated_at.to_s + s.person.email }
+        if state == "na"
+            return Rsvp.find(:all, :conditions => ["state = ?", state]).sort_by {|s| s.person.email }
+        else
+            return Rsvp.find(:all, :conditions => ["state = ?", state]).sort_by {|s| s.updated_at }
+        end
     end 
 
     def format_invitee_admin(r)
