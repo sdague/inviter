@@ -45,7 +45,7 @@ class EventsController < ApplicationController
     # POST /events
     # POST /events.xml
     def create
-        @event = Event.new(params[:event])
+        @event = current_user.events.build(params[:event])
 
         respond_to do |format|
             if @event.save
@@ -100,19 +100,18 @@ class EventsController < ApplicationController
         event = current_user.events.find(params[:id])
         list = params[:list].split(/\s+/)
         list.each do |email|
-            user = Person.find(:first, :conditions => ["email = ?", email])
-            if not user
-                user = Person.new
-                user.email = email
-                user.save
+            person = Person.find(:first, :conditions => ["email = ?", email])
+            if not person
+                person = Person.new
+                person.email = email
+                person.save
             end
-            rsvp = Rsvp.find(:first, :conditions => ["person_id = ? and event_id = ?", user.id, event.id])
+            rsvp = Rsvp.find(:first, :conditions => ["person_id = ? and event_id = ?", person.id, event.id])
             if not rsvp
-                rsvp = Rsvp.new
-                rsvp.person_id = user.id
-                rsvp.event_id = event.id
-                rsvp.state = "na"
-                rsvp.save
+                rsvp = event.create(
+                                    :person_id => person.id,
+                                    :state => "na"
+                                    )
                 InviteMailer.deliver_invite(rsvp)
             end
         end
