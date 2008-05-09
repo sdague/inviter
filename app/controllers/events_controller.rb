@@ -114,7 +114,7 @@ class EventsController < ApplicationController
                                               :person_id => person.id,
                                               :state => "na"
                                           })
-                InviteMailer.deliver_invite(rsvp)
+                InviteMailer.deliver_invite(rsvp, current_user)
             end
         end
 
