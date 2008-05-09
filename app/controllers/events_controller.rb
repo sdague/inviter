@@ -110,10 +110,10 @@ class EventsController < ApplicationController
             end
             rsvp = Rsvp.find(:first, :conditions => ["person_id = ? and event_id = ?", person.id, event.id])
             if not rsvp
-                rsvp = event.create(
-                                    :person_id => person.id,
-                                    :state => "na"
-                                    )
+                rsvp = event.rsvps.create({
+                                              :person_id => person.id,
+                                              :state => "na"
+                                          })
                 InviteMailer.deliver_invite(rsvp)
             end
         end

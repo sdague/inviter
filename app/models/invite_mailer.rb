@@ -1,29 +1,33 @@
 class InviteMailer < ActionMailer::Base
 
-    def invite(rsvp, sent_at = Time.now)
-        @subject    = "Invitation to #{rsvp.event.name} on #{rsvp.event.date}"
+    headers = {
+        "X-Mailer" => "InviteR (beta) by Sean Dague"
+    }
+    
+    def invite(rsvp, user, sent_at = Time.now)
+        @subject    = "Invitation to #{rsvp.event.name} on #{rsvp.event.date.strftime('%A %B %d')}"
         @body[:rsvp] = rsvp
         @recipients = rsvp.person.email
-        @from       = 'sean@dague.net'
+        @from       = user.email
         @sent_on    = sent_at
-        @headers    = {}
+        @headers    = headers
     end
     
-    def changed(rsvp, sent_at = Time.now)
+    def changed(rsvp, user, sent_at = Time.now)
         @subject    = "Updated profile infrmation for #{rsvp.event.name}"
         @body[:rsvp] = rsvp
         @recipients = rsvp.person.email
-        @from       = 'sean@dague.net'
+        @from       = user.email
         @sent_on    = sent_at
-        @headers    = {}
+        @headers    = headers
     end
 
-    def remind(sent_at = Time.now)
-        @subject    = 'InviteMailer#remind'
-        @body       = {}
-        @recipients = ''
-        @from       = '' 
+    def remind(rsvp, user, sent_at = Time.now)
+        @subject    = "Reminder for #{rsvp.event.name} on #{rsvp.event.date.strftime('%A %B %d')}"
+        @body[:rsvp] = rsvp
+        @recipients = rsvp.person.email
+        @from       = user.email
         @sent_on    = sent_at
-        @headers    = {}
+        @headers    = headers
     end
 end
