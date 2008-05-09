@@ -45,24 +45,24 @@ Click the Map to Get Directions
 <h1>Who's coming?</h1>
 <table width="100%">
 <tr><th width="300">Name</th><th width="100">Number</th><th>Message</th></tr>
-<tr><td class="attend_yes" colspan=3>Will Attend - <%= yes_number %></th></tr>
-<% yes_list.each do |r| %>
+<tr><td class="attend_yes" colspan=3>Will Attend - <%= @rsvp.event.yes_number %></th></tr>
+<% @rsvp.event.yes_list.each do |r| %>
 <%= format_invitee(r) %>
 <% end %>
 
-<tr><td class="attend_maybe" colspan=3>May Attend - <%= maybe_number %></th></tr>
+<tr><td class="attend_maybe" colspan=3>May Attend - <%= @rsvp.event.maybe_number %></th></tr>
 
-<% maybe_list.each do |r| %>
+<% @rsvp.event.maybe_list.each do |r| %>
 <%= format_invitee(r) %>
 <% end %>
 
-<tr><td class="attend_no" colspan=3>Won't Attend - <%= no_number %></th></tr>
-<% no_list.each do |r| %>
+<tr><td class="attend_no" colspan=3>Won't Attend - <%= @rsvp.event.no_number %></th></tr>
+<% @rsvp.event.no_list.each do |r| %>
 <%= format_invitee(r) %>
 <% end %>
 
-<tr><td class="attend_na" colspan=3>Haven't Responded - <%= na_number %></th></tr>
-<% na_list.each do |r| %>
+<tr><td class="attend_na" colspan=3>Haven't Responded - <%= @rsvp.event.na_number %></th></tr>
+<% @rsvp.event.na_list.each do |r| %>
 <%= format_invitee(r) %>
 <% end %>
 </table>

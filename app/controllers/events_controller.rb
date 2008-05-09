@@ -30,6 +30,7 @@ class EventsController < ApplicationController
     # GET /events/new.xml
     def new
         @event = Event.new
+        @locations = current_user.locations
 
         respond_to do |format|
             format.html # new.html.erb
@@ -40,6 +41,7 @@ class EventsController < ApplicationController
     # GET /events/1/edit
     def edit
         @event = current_user.events.find(params[:id])
+        @locations = current_user.locations
     end
 
     # POST /events

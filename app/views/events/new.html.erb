@@ -30,7 +30,8 @@
 
   <p>
     <b>Location</b><br />
-    <%= f.text_field :location_id %>
+    <%= collection_select("event", "location_id", @locations, "id", "name") %>
+
   </p>
 
   <p>
