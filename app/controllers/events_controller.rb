@@ -2,12 +2,11 @@ require 'pp'
 
 class EventsController < ApplicationController
     before_filter :login_required
-    before_filter :admin_check
     
     # GET /events
     # GET /events.xml
     def index
-        @events = Event.find(:all)
+        @events = current_user.events
         
         respond_to do |format|
             format.html # index.html.erb
@@ -18,7 +17,7 @@ class EventsController < ApplicationController
     # GET /events/1
     # GET /events/1.xml
     def show
-        @event = Event.find(params[:id])
+        @event = current_user.events.find(params[:id])
         @newinvitees = {:list => ""}
         @rsvps = @event.rsvps
         respond_to do |format|
@@ -40,7 +39,7 @@ class EventsController < ApplicationController
 
     # GET /events/1/edit
     def edit
-        @event = Event.find(params[:id])
+        @event = current_user.events.find(params[:id])
     end
 
     # POST /events
@@ -63,7 +62,7 @@ class EventsController < ApplicationController
     # PUT /events/1
     # PUT /events/1.xml
     def update
-        @event = Event.find(params[:id])
+        @event = current_user.events.find(params[:id])
 
         respond_to do |format|
             if @event.update_attributes(params[:event])
@@ -80,7 +79,7 @@ class EventsController < ApplicationController
     # DELETE /events/1
     # DELETE /events/1.xml
     def destroy
-        @event = Event.find(params[:id])
+        @event = current_user.events.find(params[:id])
         @event.destroy
 
         respond_to do |format|
@@ -90,15 +89,15 @@ class EventsController < ApplicationController
     end
 
     def delinvitee
-        event = Event.find(params[:id])
-        rsvp = Rsvp.find(params[:rsvp])
+        event = current_user.events.find(params[:id])
+        rsvp = event.rsvps.find(params[:rsvp])
         respond_to do |format|
             format.html { redirect_to(:action => "show", :id => params[:id]) }
         end
     end
 
     def newinvitees
-        event = Event.find(params[:id])
+        event = current_user.events.find(params[:id])
         list = params[:list].split(/\s+/)
         list.each do |email|
             user = Person.find(:first, :conditions => ["email = ?", email])
@@ -124,12 +123,4 @@ class EventsController < ApplicationController
 
     end
 
-    def admin_check
-        unless current_user.login == "sdague"
-            flash[:notice] = "Unauthorized access to admin area"
-            redirect_to :controller => 'sorry'
-        end
-    end    
-
-    
 end
