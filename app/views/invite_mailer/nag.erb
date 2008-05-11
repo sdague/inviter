@@ -1,0 +1,10 @@
+Just a reminder, you have not yet RSVPed for <%= @rsvp.event.name %> 
+which is coming up on <%= @rsvp.event.date.strftime("%A %B %d") %>.
+
+Please take a minute to do so at
+http://invite.dague.org<%= url_for :controller => "invite", :action => "show", :id => @rsvp.id,
+:key => @rsvp.key %>
+
+Thanks a bunch.  Hope to see you there.
+
+    -Sean
