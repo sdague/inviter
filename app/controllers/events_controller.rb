@@ -44,6 +44,22 @@ class EventsController < ApplicationController
         @locations = current_user.locations
     end
 
+    def nag
+        @event = current_user.events.find(params[:id])
+        rsvps = @event.rsvps.find(:all, :conditions => ["state = ?", "na"])
+        
+        rsvps.each do |rsvp|
+            InviteMailer.deliver_nag(rsvp, current_user)
+        end
+        
+        text = "<ul><li> " + rsvps.collect {|c| c.person.email}.join("<li>") + "</ul>"
+        flash[:notice] = "Sent nags to: #{text}"
+        
+        respond_to do |format|
+            format.html { redirect_to(:action => "show", :id => params[:id]) }
+        end
+    end
+    
     # POST /events
     # POST /events.xml
     def create

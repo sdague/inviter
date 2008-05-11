@@ -58,7 +58,8 @@
   <%= submit_tag "Add Invitees" %>
   <% end %>
   
-
+<%= link_to 'Send Nag', {:action => "nag", :id => @event}, :confirm =>
+'Are you sure?' %> |
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
 </div>
