@@ -11,9 +11,10 @@ module InviteHelper
             date = r.visited_at.strftime("%a, %b %d - %H:%M")
         end
 
+        uninvite = "Uninviting #{r.person.email}.  Are you sure?"
         html = "<tr valign='top'><td>#{h(r.person.name)} &lt;#{h(r.person.email)}&gt;</td>"
         html += "<td><i>#{date}</i></td><td>#{r.num or 1}</td>"
-        html += "<td>#{h(r.response)}</td><td>#{link_to 'Remove', r, :confirm => 'Are you sure?', :method => :delete}</td></tr>"
+        html += "<td>#{h(r.response)}</td><td>#{link_to 'Remove', r, :confirm => uninvite, :method => :delete}</td></tr>"
         return html
     end
 

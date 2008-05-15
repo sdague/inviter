@@ -77,7 +77,7 @@ class RsvpsController < ApplicationController
     # DELETE /rsvps/1.xml
     def destroy
         @rsvp = Rsvp.find(params[:id])
-        if rsvp.event.user.id == current_user.id
+        if @rsvp.event.user.id == current_user.id
             @rsvp.destroy
         else
             flash[:error] = "Attempting to delete an RSVP that you can't"
